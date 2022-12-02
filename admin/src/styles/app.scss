@@ -1,0 +1,669 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins';
+}
+
+/*APP.JSX*/
+.Container {
+  display: flex;
+  background-color: #dde5f4;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  min-width: 0;
+
+  .Pages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .Page {
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+    width: auto;
+    height: 100%;
+    min-width: 0px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: scroll;
+    position: relative;
+  }
+}
+
+.Container ::-webkit-scrollbar {
+  display: none;
+}
+
+/*NAVBAR.JSX*/
+.Navbar {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  max-height: 2rem;
+  width: 100%;
+
+
+  .Username {
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  .SearchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: none;
+    flex: 1;
+    min-width: 0;
+    margin-left: 1rem;
+    padding: 5px;
+
+    .InputContainer {
+      display: flex;
+      min-width: 0;
+      flex-basis: 500px;
+      position: relative;
+    }
+
+    .Input {
+      outline: none;
+      padding: 0.5rem;
+      padding-left: 1rem;
+      width: 100%;
+      border: 0.5px solid lightgray;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .Icon {
+      position: absolute;
+      right: 1rem;
+      top: 7px;
+    }
+  }
+
+}
+
+/*Sidebar*/
+.SidebarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 6%;
+  min-width: 75px;
+  font-size: large;
+
+  .Logo {
+    height: 4rem;
+  }
+
+  .Elements {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    min-width: 30%;
+    overflow: hidden;
+  }
+
+  .Element {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 1rem;
+  }
+
+  .Icon {
+    display: flex;
+    height: 100%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .Title {
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 5px;
+    height: auto;
+  }
+
+  .Logout {
+    display: flex;
+    cursor: pointer;
+    height: auto;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px;
+    border-top-right-radius: 20px;
+    background-color: white;
+
+    .Exit {
+      height: auto;
+      font-weight: bold;
+      color: #1f343d;
+    }
+  }
+}
+
+/*LOGIN.JSX*/
+.LoginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dde5f4;
+  height: 100vh;
+  width: 100%;
+
+
+  .Content {
+    max-height: 90%;
+    margin: 1rem;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    background-color: #eff2f9;
+    width: 25rem;
+    gap: 1rem;
+    overflow-y: scroll;
+
+  }
+
+  .Content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Image {
+    padding: 0 auto;
+    width: auto;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  .LoginForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+
+    .Element {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      background: white;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 0 10%;
+      padding: 10px;
+      border: 2px solid-grey;
+      border-radius: 10px;
+      gap: 8px;
+
+      .Title {
+        padding-left: 5px;
+        color: #4d4d4d;
+        font-size: medium;
+        font-weight: bold;
+      }
+
+      .valueContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .Value {
+          border: none;
+          width: 90%;
+          padding: 5px;
+          outline: none;
+          font-size: small;
+
+          &::placeholder {
+            font-weight: lighter;
+          }
+        }
+      }
+    }
+
+    .submit {
+      height: auto;
+      width: 70%;
+      align-self: center;
+      padding: 10px;
+      border: none;
+      border-radius: 2rem;
+      background-color: #020241;
+      color: white;
+      font-size: large;
+      cursor: pointer;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .text {
+        font-size: 13px;
+        color: #7d7c7c;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/*ITEM PAGE*/
+.ItemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+
+  .SingleItemContainer {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 1rem auto;
+    min-width: 0;
+
+    .EditProduct {
+      display: flex;
+      color: white;
+      height: fit-content;
+      gap: 1rem;
+
+      .EditItem {
+        right: 0;
+        top: 0;
+        position: absolute;
+        height: fit-content;
+        background-color: #7979c5;
+        width: fit-content;
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    .SingleItem {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      height: 300px;
+      border-radius: 1rem;
+      overflow: auto;
+      gap: 1rem;
+      border: 1px solid #7979c5;
+      cursor: pointer;
+
+      .Name {
+        font-size: 1.2rem;
+      }
+
+      .Price {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .Image {
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+  }
+
+
+  .SingleItemInfo {
+    display: flex;
+    max-height: 300px;
+    gap: 1rem;
+    width: 100%;
+
+    .Image {
+      max-width: 300px;
+    }
+
+    .ItemDetail {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      max-width: 100px;
+      height: fit-content;
+
+      .Name {
+        font-size: 1.2rem;
+        height: fit-content;
+      }
+
+      .Price {
+        font-size: 2rem;
+        font-weight: bold;
+        height: fit-content;
+      }
+    }
+
+    .Cart {
+      display: flex;
+      flex-direction: column;
+      min-width: 300px;
+      height: fit-content;
+
+      .Element {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: fit-content;
+        width: auto;
+        padding: 1rem;
+        font-size: 1rem;
+        border: 1px solid grey;
+
+        .Title {}
+
+        .Value {}
+
+        .Button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          width: auto;
+          height: auto;
+          border: none;
+          background-color: #020241;
+          color: white;
+          font-size: large;
+          font-weight: bolder;
+          margin: 1rem;
+          padding: 1rem;
+        }
+      }
+
+      .Element+.Element {
+        border-top: none;
+      }
+
+    }
+
+  }
+
+}
+
+/*CART PAGE*/
+.CartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  gap: 1rem;
+
+  .Bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 0.5rem;
+
+    .Total {
+      align-self: center;
+    }
+
+    .Submit {
+      text-align: center;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background-color: #9e9ee3;
+      font-size: 1.2rem;
+    }
+  }
+
+  .MainTitle {
+    height: fit-content;
+  }
+
+  .ItemContainer {
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    max-height: 100%;
+    max-width: 100%;
+
+    .Image {
+      max-width: 20rem;
+      height: auto;
+      max-height: 100%;
+      min-width: 0;
+      object-fit: cover;
+    }
+
+    .ItemInfoContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      min-width: 0;
+      height: auto;
+      flex: 1;
+      gap: 1rem;
+      padding: 0 1rem;
+
+      .Price {
+        font-size: 1.5rem;
+      }
+
+      .Seller {
+        font-size: 1.5rem;
+      }
+
+      .QtyContainer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: fit-content;
+        gap: 1rem;
+        height: fit-content;
+
+        .Icon {
+          cursor: pointer;
+        }
+
+        .Qty {
+          font-size: 1.5rem;
+        }
+
+        .Title {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+.CreateProductContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .ElementContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+
+    .Element {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+      height: fit-content;
+      margin: 1rem auto;
+      padding: 1rem;
+      flex: 1 0 33%;
+
+      .Title {
+        height: fit-content;
+        margin-bottom: 1rem;
+      }
+
+      .Value {
+        width: 100%;
+        border: 1px solid grey;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+      }
+    }
+  }
+
+  .Bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-around;
+    gap: 1rem;
+
+    .Image {
+      align-self: center;
+    }
+
+    .Submit {
+      border: none;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background-color: #9e9ee3;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.AllUsersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: fit-content;
+  width: 100%;
+  height: 100%;
+
+  .UserContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    height: fit-content;
+    gap: 1rem;
+    margin: 1rem 2%;
+    padding: 1rem 0;
+    background-color: #7171b4;
+    border-radius: 1rem;
+
+    .Location {
+      cursor: pointer;
+      background-color: white;
+      font-size: larger;
+      width: 80%;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      border: none;
+    }
+
+    .Title {
+      color: white;
+    }
+  }
+}
+
+.OrderPageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  gap: 1rem;
+
+  .OrderContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: fit-content;
+    border: 1px solid #dcdcf4;
+    border-radius: 1rem;
+    position: relative;
+
+    .EditItem {
+      position: absolute;
+      height: fit-content;
+      width: fit-content;
+      font-size: 1.4rem;
+      left: 0;
+      top: 0;
+      padding: 0.5rem;
+      background-color: #7979c5;
+      border-bottom-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+      cursor: pointer;
+    }
+
+    .TotalContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      min-width: 0;
+      height: fit-content;
+      padding: 1rem;
+      padding-top: 2rem;
+      background-color: #dcdcf4;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+
+      .Element {
+        .Title {
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+
+        .Value {}
+      }
+    }
+  }
+
+  .OrderContainer+.OrderContainer {
+    border-top: none;
+  }
+}
