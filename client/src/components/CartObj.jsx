@@ -9,6 +9,7 @@ const CartObj = ({ item, quantity, addProduct, removeProduct }) => {
         <div className="ItemInfoContainer">
           <h1 className="Title">{item.name}</h1>
           <div className="Seller">Seller : {item.seller}</div>
+          <div className="Price">{item.description}</div>
           <div className="Price">Product Price : {Math.floor(item.price)}$</div>
           <div className="Price">KDV : {item.kdv}%</div>
           <div className="Price">

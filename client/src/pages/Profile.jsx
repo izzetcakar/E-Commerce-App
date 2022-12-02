@@ -23,7 +23,7 @@ const Profile = () => {
 
   const getUserById = async () => {
     try {
-      const { data } = await axios.get(`/user/${id}`);
+      const { data } = await axios.get(`/user/profile`);
       setUser(data);
     } catch (error) {
       console.log(error.response.data);
@@ -39,7 +39,7 @@ const Profile = () => {
       return alert("Password has to be at least 6 characters");
     }
     try {
-      await axios.put(`/user/${id}`, user);
+      await axios.put(`/user/profile`, user);
     } catch (error) {
       console.log(error.response.data);
     }

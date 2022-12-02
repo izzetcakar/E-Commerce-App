@@ -22,6 +22,14 @@ const AllUsers = () => {
       console.log(error.response.data);
     }
   };
+  const deleteUser = async (id) => {
+    try {
+      await axios.delete(`/user/${id}`);
+      getUsers();
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 
   return (
     <div className="AllUsersContainer">
@@ -46,6 +54,9 @@ const AllUsers = () => {
                 onClick={() => navigate(`/orders/${user._id}`)}
               >
                 Orders
+              </button>
+              <button className="Location" onClick={() => deleteUser(user._id)}>
+                Delete User
               </button>
             </div>
           ))}

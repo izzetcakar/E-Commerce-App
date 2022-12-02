@@ -7,6 +7,7 @@ import productRoute from './routes/productRoute.js';
 import orderRoute from './routes/orderRoute.js';
 import dotenv from 'dotenv';
 import multer from 'multer';
+import fs from 'fs';
 
 dotenv.config();
 const app = express();
@@ -22,14 +23,22 @@ app.use("/api/order", orderRoute);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../client/public/images");
+    const dest = "../client/public/images";
+    fs.access(dest, function (error) {
+      if (error) {
+        return cb(null, "../admin/public/images");
+      } else {
+        return cb(null, dest);
+      }
+    });
+
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage, preservePath: true });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
   const file = req.file;

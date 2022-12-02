@@ -25,6 +25,13 @@ const OrderSchema = new mongoose.Schema(
           type: String,
           required: true
         },
+        kdv: {
+          type: Number,
+          required: true,
+          default: 0,
+          min: 0,
+          max: 100
+        },
         price: {
           type: Number,
           required: true,
