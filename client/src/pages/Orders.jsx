@@ -32,7 +32,6 @@ const Orders = () => {
                 <div className="Title">Order Date</div>
                 <div className="Value">
                   {moment(order.createdAt)
-                    .utc()
                     .format("MMMM Do YYYY, h:mm:ss a") || ""}
                 </div>
               </div>
