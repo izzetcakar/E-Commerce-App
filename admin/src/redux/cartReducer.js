@@ -25,14 +25,14 @@ const cartSlice = createSlice({
         state.products.push({ ...product, quantity: qty, product: product._id });
       }
 
-      state.total += product.price * qty;
+      state.total += (product.price * qty) + ((product.price / 100) * product.kdv * qty);
     },
     reduceProduct: (state, action) => {
       const { product, qty } = action.payload;
       let cartProduct = state.products.find((item) => item._id === product._id);
 
       if (cartProduct.quantity - action.payload.qty >= 0) {
-        let reduceTotal = product.price * qty;
+        let reduceTotal = (product.price * qty) + (product.price / 100 * product.kdv);
         state.total -= reduceTotal;
       }
 

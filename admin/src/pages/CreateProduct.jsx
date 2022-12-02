@@ -11,7 +11,7 @@ const CreateProduct = () => {
   const [inputs, setInputs] = useState({
     name: "Sample name",
     price: 0,
-    brand: "",
+    kdv: 0,
     description: "",
     countInStock: 0,
     numReviews: 0,
@@ -58,9 +58,9 @@ const CreateProduct = () => {
       type: "text",
     },
     {
-      id: "brand",
-      title: "Brand",
-      type: "text",
+      id: "kdv",
+      title: "KDV",
+      type: "number",
     },
     {
       id: "price",

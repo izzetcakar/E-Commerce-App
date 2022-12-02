@@ -48,10 +48,10 @@ const UpdateProduct = () => {
       placeholder: product.price,
     },
     {
-      id: "brand",
-      title: "Brand",
+      id: "kdv",
+      title: "KDV",
       type: "text",
-      placeholder: product.brand,
+      placeholder: `${product.kdv}%`,
     },
     {
       id: "description",
