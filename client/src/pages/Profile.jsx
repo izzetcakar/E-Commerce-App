@@ -6,27 +6,40 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AuthContext from "../context/authContext";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
-  const { user, login, getUser } = useContext(AuthContext);
-
-  const [inputs, setInputs] = useState({
-    username: user.username,
-    email: user.email,
+  const { id } = useParams();
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
     password: "",
   });
 
+  useEffect(() => {
+    getUserById(id);
+  }, []);
+
+  const getUserById = async () => {
+    try {
+      const { data } = await axios.get(`/user/${id}`);
+      setUser(data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   const handleChange = (event) => {
-    setInputs((prev) => ({ ...prev, [event.target.id]: event.target.value }));
+    setUser((prev) => ({ ...prev, [event.target.id]: event.target.value }));
   };
 
   const handleSubmit = async (e) => {
-    if (inputs.password.length < 6) {
+    if (user.password.length < 6) {
       return alert("Password has to be at least 6 characters");
     }
     try {
-      await axios.put(`/user/profile`, inputs);
-      getUser();
+      await axios.put(`/user/${id}`, user);
     } catch (error) {
       console.log(error.response.data);
     }

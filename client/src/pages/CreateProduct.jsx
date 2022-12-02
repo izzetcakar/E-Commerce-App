@@ -1,15 +1,12 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddProductObj from "../components/AddProductObj";
-import AuthContext from "../context/authContext";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState({});
-  const { user, getUser } = useContext(AuthContext);
 
   const [inputs, setInputs] = useState({
     name: "Sample name",
@@ -50,39 +47,40 @@ const CreateProduct = () => {
       await axios.post(`/product`, { ...inputs, image: "/images/" + imgUrl });
       navigate("/");
     } catch (err) {
-      console.log(err.response.data);
+      alert(err.response.data.message);
     }
   };
 
   const elements = [
     {
       id: "name",
-      placeholder: "Name",
+      title: "Name",
       type: "text",
     },
     {
-      id: "price",
-      placeholder: "Price",
+      id: "kdv",
+      title: "KDV",
       type: "number",
     },
     {
-      id: "brand",
-      placeholder: "Brand",
-      type: "text",
+      id: "price",
+      title: "Price",
+      type: "number",
     },
-    {
-      id: "description",
-      placeholder: "Description",
-      type: "text",
-    },
+
     {
       id: "countInStock",
-      placeholder: "countInStock",
+      title: "CountInStock",
       type: "number",
     },
     {
       id: "category",
-      placeholder: "Category",
+      title: "Category",
+      type: "text",
+    },
+    {
+      id: "description",
+      title: "Description",
       type: "text",
     },
   ];
@@ -96,10 +94,16 @@ const CreateProduct = () => {
           </div>
         ))}
       </div>
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <button className="submit" onClick={handleClick}>
-        Publish
-      </button>
+      <div className="Bottom">
+        <input
+          className="Image"
+          type="file"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <button className="Submit" onClick={handleClick}>
+          Create Product
+        </button>
+      </div>
     </div>
   );
 };

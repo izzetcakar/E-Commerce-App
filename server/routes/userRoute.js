@@ -24,6 +24,9 @@ router.route('/profile')
   .get(verifyToken, getUser)
   .put(verifyToken, updateUser)
 
+router.route('/')
+  .get(verifyToken, isAdmin, getAllUsers)
+
 router.route('/:id')
   .get(verifyToken, isAdmin, getUserById)
   .put(verifyToken, isAdmin, updateUserByAdmin)

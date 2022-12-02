@@ -1,53 +1,56 @@
 import React, { useContext } from "react";
-import AuthContext from "../context/authContext";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
+import AuthContext from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../redux/cartReducer";
+import CartObj from "../components/CartObj";
+import { addProduct, reduceProduct } from "../redux/cartReducer";
 
 const Cart = () => {
-  const { cartItems, total, addToCart, reduceFromCart } =
-    useContext(AuthContext);
+  const cartItems = useSelector((state) => state.cart.products);
+  const total = useSelector((state) => state.cart.total);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { search } = useContext(AuthContext);
 
   const makeOrder = async (cart, total) => {
     try {
-      const res = await axios.post("/order", {
+      await axios.post("/order", {
         orderProducts: cart,
         totalPrice: total,
       });
+      dispatch(clearCart());
+      navigate("/");
     } catch (error) {
-      console.log(error.response.data);
+      alert(error.response.data);
     }
   };
   return (
     <div className="CartContainer">
-      <div className="LeftContainer">
-        <div className="MainTitle">SHOPPING CART</div>
-        {cartItems &&
-          cartItems.map((item) => (
-            <div className="ItemContainer" key={item._id}>
-              <img className="Image" src={item.image} />
-              <div className="Title">{item.name}</div>
-              <div className="Price">{Math.floor(item.price)}</div>
-              <div className="QtyContainer">
-                <RemoveCircleIcon
-                  className="Icon"
-                  onClick={() => reduceFromCart(item, 1)}
-                />
-                <div className="Qty">{item.quantity}</div>
-                <AddCircleIcon
-                  className="Icon"
-                  onClick={() => addToCart(item, 1)}
-                />
-              </div>
-            </div>
+      <h1 className="MainTitle">SHOPPING CART</h1>
+      {cartItems &&
+        cartItems
+          .filter((item) => {
+            if (search === "") return item;
+            else if (item.name.toLowerCase().includes(search.toLowerCase()))
+              return item;
+          })
+          .map((item, index) => (
+            <CartObj
+              item={item}
+              quantity={item.quantity}
+              key={index}
+              addProduct={() => dispatch(addProduct({ product: item, qty: 1 }))}
+              removeProduct={() =>
+                dispatch(reduceProduct({ product: item, qty: 1 }))
+              }
+            />
           ))}
-      </div>
-      <div className="RightContainer">
-        <div className="Title">SUBTOTAL {cartItems.length} ITEMS</div>
-        <div className="Price">{total}</div>
-        <button className="Button" onClick={() => makeOrder(cartItems, total)}>
-          PROCEED TO CHECKOUT
+      <div className="Bottom">
+        <h1 className="Total">Total Amount: {total}$</h1>
+        <button className="Submit" onClick={() => makeOrder(cartItems, total)}>
+          Make Order
         </button>
       </div>
     </div>

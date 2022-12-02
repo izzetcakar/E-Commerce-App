@@ -27,7 +27,6 @@ const Layout = () => {
   const { user } = useContext(AuthContext);
 
   if (user) {
-
     return (
       <div className="Container">
         <Sidebar />
@@ -71,11 +70,11 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/orders",
+        path: "/orders/:id",
         element: <Orders />
       },
       {
-        path: "/profile",
+        path: "/profile/:id",
         element: <Profile />,
       },
     ],

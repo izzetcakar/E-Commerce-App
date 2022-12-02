@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 import userRoute from './routes/userRoute.js';
 import productRoute from './routes/productRoute.js';
-import cartRoute from './routes/cartRoute.js';
 import orderRoute from './routes/orderRoute.js';
 import dotenv from 'dotenv';
 import multer from 'multer';
@@ -19,7 +18,6 @@ connectDB();
 app.use(cors());
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
-app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 
 const storage = multer.diskStorage({

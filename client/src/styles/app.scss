@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  height: 100%;
   font-family: 'Poppins';
 }
 
@@ -11,12 +10,14 @@
   background-color: #dde5f4;
   overflow: hidden;
   width: 100%;
+  height: 100vh;
   min-width: 0;
 
   .Pages {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     min-width: 0;
   }
 
@@ -25,6 +26,7 @@
     margin: 1rem;
     padding: 1rem;
     width: auto;
+    height: 100%;
     min-width: 0px;
     background-color: white;
     border-radius: 20px;
@@ -47,16 +49,11 @@
 
 
   .Username {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
     padding: 0.3rem 1rem;
-    margin-top: 0.1rem;
     border-radius: 20px;
     background-color: white;
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 
   .SearchContainer {
@@ -68,7 +65,6 @@
     min-width: 0;
     margin-left: 1rem;
     padding: 5px;
-    margin-bottom: 0.6rem;
 
     .InputContainer {
       display: flex;
@@ -79,7 +75,7 @@
 
     .Input {
       outline: none;
-      padding: 5px;
+      padding: 0.5rem;
       padding-left: 1rem;
       width: 100%;
       border: 0.5px solid lightgray;
@@ -88,13 +84,9 @@
     }
 
     .Icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: absolute;
       right: 1rem;
-      top: 5px;
-      bottom: auto;
+      top: 7px;
     }
   }
 
@@ -119,7 +111,6 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    height: max-content;
     min-width: 30%;
     overflow: hidden;
   }
@@ -138,6 +129,7 @@
 
   .Icon {
     display: flex;
+    height: 100%;
     background-color: white;
     justify-content: center;
     align-items: center;
@@ -179,13 +171,14 @@
   justify-content: center;
   align-items: center;
   background-color: #dde5f4;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
 
   .Content {
-    height: 90%;
+    max-height: 90%;
     margin: 1rem;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
@@ -212,7 +205,7 @@
   .LoginForm {
     display: flex;
     flex-direction: column;
-    height: max;
+    height: 100%;
     gap: 2rem;
 
     .Element {
@@ -285,8 +278,7 @@
 .ItemContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  min-height: fit-content;
+  height: 100%;
   width: 100%;
 
   .SingleItemContainer {
@@ -294,8 +286,8 @@
     position: relative;
     width: fit-content;
     height: fit-content;
-    margin: 1rem 2%;
-
+    margin: 1rem auto;
+    min-width: 0;
 
     .EditProduct {
       display: flex;
@@ -308,7 +300,7 @@
         top: 0;
         position: absolute;
         height: fit-content;
-        background-color: black;
+        background-color: #7979c5;
         width: fit-content;
         padding: 0.5rem;
         cursor: pointer;
@@ -318,14 +310,13 @@
     .SingleItem {
       padding: 1rem;
       display: flex;
-
       flex-direction: column;
       width: 200px;
       height: 300px;
-      background-color: #7979c5;
       border-radius: 1rem;
       overflow: auto;
       gap: 1rem;
+      border: 1px solid #7979c5;
       cursor: pointer;
 
       .Name {
@@ -335,6 +326,11 @@
       .Price {
         font-size: 2rem;
         font-weight: bold;
+      }
+
+      .Image {
+        height: 150px;
+        object-fit: cover;
       }
     }
   }
@@ -420,94 +416,241 @@
 /*CART PAGE*/
 .CartContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: fit-content;
+  height: 100%;
+  overflow: auto;
+  gap: 1rem;
 
-  .LeftContainer {
+  .Bottom {
     display: flex;
     flex-direction: column;
-    font-size: large;
-    gap: 1rem;
+    width: 100%;
+    height: auto;
+    gap: 0.5rem;
 
-    .MainTitle {
-      font-size: 2rem;
+    .Total {
+      align-self: center;
     }
 
-    .ItemContainer {
+    .Submit {
+      text-align: center;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background-color: #9e9ee3;
+      font-size: 1.2rem;
+    }
+  }
+
+  .MainTitle {
+    height: fit-content;
+  }
+
+  .ItemContainer {
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    max-height: 100%;
+    max-width: 100%;
+
+    .Image {
+      max-width: 20rem;
+      height: auto;
+      max-height: 100%;
+      min-width: 0;
+      object-fit: cover;
+    }
+
+    .ItemInfoContainer {
       display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      min-width: 0;
+      height: auto;
+      flex: 1;
       gap: 1rem;
-      justify-content: flex-start;
-
-      .Image {
-        max-height: 150px;
-        width: auto;
-      }
-
-      .Title {
-        flex: 4;
-      }
-
-      .Price {
-        flex: 1;
-      }
+      padding: 0 1rem;
+      font-size: 1.4rem;
 
       .QtyContainer {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        width: fit-content;
         gap: 1rem;
-        flex: 1;
+        height: fit-content;
+        font-size: 1.4rem;
 
         .Icon {
           cursor: pointer;
         }
+
       }
-
-    }
-
-  }
-
-  .RightContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin: 2rem;
-    padding: 1rem;
-    justify-self: center;
-    align-self: center;
-    border: 1px solid grey;
-
-    .Title {}
-
-    .Price {}
-
-    .Button {
-      min-width: max-content;
-      border: none;
-      padding: 1rem;
-      background-color: #020241;
-      color: white;
-      cursor: pointer;
     }
   }
-
 }
 
 .CreateProductContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   height: 100%;
   width: 100%;
 
   .ElementContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
 
     .Element {
-      background-color: #020241;
+      display: flex;
+      flex-direction: column;
       width: auto;
-      height: auto;
+      height: fit-content;
+      margin: 1rem auto;
+      padding: 1rem;
+      flex: 1 0 33%;
+
+      .Title {
+        height: fit-content;
+        margin-bottom: 1rem;
+      }
+
+      .Value {
+        width: 100%;
+        border: 1px solid grey;
+        padding: 0.5rem;
+        border-radius: 0.2rem;
+      }
     }
+  }
+
+  .Bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-around;
+    gap: 1rem;
+
+    .Image {
+      align-self: center;
+    }
+
+    .Submit {
+      border: none;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background-color: #9e9ee3;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.AllUsersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: fit-content;
+  width: 100%;
+  height: 100%;
+
+  .UserContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    height: fit-content;
+    gap: 1rem;
+    margin: 1rem 2%;
+    padding: 1rem 0;
+    background-color: #7171b4;
+    border-radius: 1rem;
+
+    .Location {
+      cursor: pointer;
+      background-color: white;
+      font-size: larger;
+      width: 80%;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      border: none;
+    }
+
+    .Title {
+      color: white;
+    }
+  }
+}
+
+.OrderPageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  gap: 1rem;
+
+  .OrderContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: fit-content;
+    border: 1px solid #dcdcf4;
+    border-radius: 1rem;
+    position: relative;
+
+    .EditItem {
+      position: absolute;
+      height: fit-content;
+      width: fit-content;
+      font-size: 1.4rem;
+      left: 0;
+      top: 0;
+      padding: 0.5rem;
+      background-color: #7979c5;
+      border-bottom-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+      cursor: pointer;
+    }
+
+    .TotalContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      min-width: 0;
+      height: fit-content;
+      padding: 1rem;
+      padding-top: 2rem;
+      background-color: #dcdcf4;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+
+      .Element {
+        .Title {
+          font-size: 1.4rem;
+          font-weight: bold;
+        }
+
+        .Value {}
+      }
+    }
+  }
+
+  .OrderContainer+.OrderContainer {
+    border-top: none;
   }
 }

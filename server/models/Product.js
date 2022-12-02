@@ -23,6 +23,13 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    kdv: {
+      type: Number,
+      required: true,
+      default: 0,
+      min: 0,
+      max: 100
+    },
     category: {
       type: String,
       required: true
@@ -42,6 +49,9 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       default: 0
     }
+  },
+  {
+    timestamps: true,
   }
 );
 

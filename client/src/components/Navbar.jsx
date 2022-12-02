@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AuthContext from "../context/authContext";
 
 const Navbar = () => {
-  const { user, search, setSearch } = useContext(AuthContext);
+  const { user, setSearch } = useContext(AuthContext);
 
   return (
     <div className="Navbar">
@@ -21,7 +21,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="Username">{user.username}</div>
+      <div className="Username">{user?.username}</div>
     </div>
   );
 };

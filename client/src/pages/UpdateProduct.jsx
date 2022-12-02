@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useLayoutEffect } from "react";
 import { useEffect } from "react";
-import ChangeProductItem from "../components/ChangeProductItem";
+import AddProductObj from "../components/AddProductObj";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -32,7 +31,7 @@ const UpdateProduct = () => {
     try {
       await axios.put(`/product/${id}`, product);
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response.data.message);
     }
   };
   const elements = [
@@ -49,10 +48,10 @@ const UpdateProduct = () => {
       placeholder: product.price,
     },
     {
-      id: "brand",
-      title: "Brand",
-      type: "text",
-      placeholder: product.brand,
+      id: "kdv",
+      title: "KDV",
+      type: "number",
+      placeholder: `${product.kdv}%`,
     },
     {
       id: "description",
@@ -62,7 +61,7 @@ const UpdateProduct = () => {
     },
     {
       id: "countInStock",
-      title: "countInStock",
+      title: "CountInStock",
       type: "number",
       placeholder: product.countInStock,
     },
@@ -75,28 +74,21 @@ const UpdateProduct = () => {
   ];
 
   return (
-    <div className="ItemContainer">
-      <div className="SingleItemInfo">
-        <img className="Image" alt="..." src={product.image} />
-        <div className="Cart">
-          <div className="Element">
-            {elements.map((item, index) => (
-              <ChangeProductItem
-                item={item}
-                handleChange={handleChange}
-                key={index}
-              />
-            ))}
+    <div className="CreateProductContainer">
+      <div className="ElementContainer">
+        {elements.map((item, index) => (
+          <div className="Element" key={index}>
+            <AddProductObj item={item} handleChange={handleChange} />
           </div>
-          <div className="Element" style={{ justifyContent: "center" }}>
-            <button
-              className="Button"
-              onClick={() => updateProduct(product, product._id)}
-            >
-              UPDATE PRODUCT
-            </button>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div className="Bottom">
+        <button
+          className="Submit"
+          onClick={() => updateProduct(product, product._id)}
+        >
+          Update Product
+        </button>
       </div>
     </div>
   );

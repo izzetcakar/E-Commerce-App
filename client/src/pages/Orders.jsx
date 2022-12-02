@@ -1,18 +1,22 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useLayoutEffect } from "react";
+import { useParams } from "react-router-dom";
+import OrderObj from "../components/OrderObj";
 import AuthContext from "../context/authContext";
+import moment from "moment";
 
 const Orders = () => {
-  const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState([]);
+  const { search } = useContext(AuthContext);
+  const { id } = useParams();
 
   useEffect(() => {
-    getOrders();
+    getUserOrders();
   }, []);
 
-  const getOrders = async () => {
+  const getUserOrders = async () => {
     try {
-      const { data } = await axios.get("/order/userOrder");
+      const { data } = await axios.get(`/order/${id}`);
       setOrders(data);
     } catch (error) {
       console.log(error.response.data);
@@ -20,30 +24,40 @@ const Orders = () => {
   };
 
   return (
-    <>
+    <div className="OrderPageContainer">
       {orders &&
-        orders.map((item) => (
-          <div className="CartContainer" key={item._id}>
-            <div className="LeftContainer">
-              <div className="MainTitle">ORDERS</div>
-              {item.orderProducts.map((product) => (
-                <div className="ItemContainer" key={product._id}>
-                  <img className="Image" src={product.image} />
-                  <div className="Title">{product.name}</div>
-                  <div className="Price">{product.price}</div>
-                  <div className="Qty">{product.quantity}</div>
+        orders.map((order) => (
+          <div className="OrderContainer" key={order._id}>
+            <div className="TotalContainer">
+              <div className="Element">
+                <div className="Title">Order Date</div>
+                <div className="Value">
+                  {moment(order.createdAt)
+                    .utc()
+                    .format("MMMM Do YYYY, h:mm:ss a") || ""}
                 </div>
-              ))}
-            </div>
-            <div className="RightContainer">
-              <div className="Title">
-                TOTAL {item.orderProducts.length} ITEMS
               </div>
-              <div className="Price">{item.totalPrice}</div>
+              <div className="Element">
+                <div className="Title">Total Price</div>
+                <div className="Value">{order.totalPrice}$</div>
+              </div>
+            </div>
+            <div className="CartContainer">
+              {order.orderProducts
+                .filter((item) => {
+                  if (search === "") return item;
+                  else if (
+                    item.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                    return item;
+                })
+                .map((item) => (
+                  <OrderObj item={item} key={item._id} />
+                ))}
             </div>
           </div>
         ))}
-    </>
+    </div>
   );
 };
 

@@ -10,11 +10,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import CreateIcon from "@mui/icons-material/Create";
 import AddIcon from "@mui/icons-material/Add";
 import ViewListIcon from "@mui/icons-material/ViewList";
+import PeopleIcon from "@mui/icons-material/People";
 import AuthContext from "../context/authContext";
 import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const items = [
     {
@@ -32,13 +33,13 @@ const Sidebar = () => {
     {
       icon: PersonIcon,
       title: "PROFILE",
-      route: "/profile",
+      route: `/profile/${user?._id}`,
       location: "profile",
     },
     {
       icon: ViewListIcon,
       title: "ORDERS",
-      route: "/orders",
+      route: `/orders/${user?._id}`,
       location: "orders",
     },
     {
