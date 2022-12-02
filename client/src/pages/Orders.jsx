@@ -8,7 +8,6 @@ import moment from "moment";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const { search } = useContext(AuthContext);
-  const { id } = useParams();
 
   useEffect(() => {
     getUserOrders();
@@ -16,7 +15,7 @@ const Orders = () => {
 
   const getUserOrders = async () => {
     try {
-      const { data } = await axios.get(`/userOrder`);
+      const { data } = await axios.get(`/order/userOrder`);
       setOrders(data);
     } catch (error) {
       console.log(error.response.data);
