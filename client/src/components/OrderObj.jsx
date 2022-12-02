@@ -12,7 +12,10 @@ const OrderObj = ({ item }) => {
           <div className="Price">Product Price : {Math.floor(item.price)}$</div>
           <div className="Price">KDV : {item.kdv}%</div>
           <div className="Price">
-            Amount : {Math.floor(item.price * item.quantity)}$
+            Amount :{" "}
+            {item.price * item.quantity +
+              (item.price / 100) * item.kdv * item.quantity}
+            $
           </div>
           <div className="QtyContainer">
             <div className="Title">Quantity :</div>
