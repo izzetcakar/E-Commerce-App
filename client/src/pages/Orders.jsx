@@ -16,7 +16,7 @@ const Orders = () => {
 
   const getUserOrders = async () => {
     try {
-      const { data } = await axios.get(`/order`);
+      const { data } = await axios.get(`/userOrder`);
       setOrders(data);
     } catch (error) {
       console.log(error.response.data);
